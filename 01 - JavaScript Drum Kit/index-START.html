@@ -67,16 +67,30 @@
     console.log(audio)
     console.log(key)
     if (audio == null) return //do nothing if invalid key pressed
-    else {
       audio.currentTime = 0; //rewinds the current audio file to beginning
       audio.play()
-      key.classList.add('playing') //vanilla JS way of doing this
+      key.classList.add('playing') //vanilla JS way of doing the transform
       //key.classList.remove('playing')
       //key.classList.toggle('playing')
       console.log(key)
-    }
-    //document.audio.play(`audio[data-key="${e.keyCode}"]`)
   })
+
+  function removeTransition(e) {
+    console.log(e)
+    if (e.propertyName != 'transform') return
+    console.log(this)
+      //this, which ends up being 'key' in key.addEventListener below
+    this.classList.remove('playing') //undoes the .add in window function above
+    console.log(this)
+    //key.classList.remove('playing')
+  }
+
+  const keys = document.querySelectorAll('.key')
+  console.log(keys)
+    //transition end events; loops through all keys & calls removeTransition
+  keys.forEach(key => key.addEventListener('transitionend', removeTransition))
+
+
 </script>
 
 
