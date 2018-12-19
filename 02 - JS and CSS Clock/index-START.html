@@ -81,18 +81,41 @@
     var min_deg = 0;
     var hour_deg = 0;
 
-    function setDate(){
+    function setDateTrash(){
       const currentUnixTime = Date.now()
       console.log(currentUnixTime)
       console.log(hands)
       sec_deg += 6;
       min_deg += 0.1;
       hour_deg += (0.1/60);
-      console.log(sec_deg)
-      console.log(min_deg)
-      console.log(hour_deg)
-      //const stuff = hands[hand="sec-hand"].style.transform.rotate(`${sec_deg}deg`)
-      console.log(stuff)
+      console.log(sec_deg);
+      console.log(min_deg);
+      console.log(hour_deg);
+      //const stuff = hands[hand="sec-hand"].style.transform.rotate(`${sec_deg}deg`);
+      console.log(stuff);
+    }
+
+    function setDateLessTrash(){
+      const now = new Date();
+      const seconds = now.getSeconds()
+      console.log(seconds)
+      const secondsDegrees = (seconds/60.0)*360.0
+      const minutes = now.getMinutes()
+      console.log(minutes)
+      const minutesDegrees = ((minutes+seconds/60.0)/60.0)*360.0
+      const hours = now.getHours()
+      console.log(hours)
+      const hoursDegrees = ((hours % 12)/12+((minutes+seconds/60.0)/60))*360.0
+      console.log(secondsDegrees)
+      console.log(minutesDegrees)
+      console.log(hoursDegrees)
+    }
+
+    function setDate(){
+      const now = new Date();
+      const seconds = now.getSeconds()
+      console.log(seconds)
+      const secondsDegrees = (seconds/60.0)*360.0
     }
 
     setInterval(setDate, 1000) // (LOOP) run handler, setDate, on 1000ms 'timeout' interval
