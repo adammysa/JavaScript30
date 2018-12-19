@@ -81,6 +81,10 @@
     var min_deg = 0;
     var hour_deg = 0;
 
+    const secondHand = document.querySelector('.second-hand')
+    const minuteHand = document.querySelector('.min-hand')
+    const hourHand = document.querySelector('.hour-hand')
+
     function setDateTrash(){
       const currentUnixTime = Date.now()
       console.log(currentUnixTime)
@@ -103,16 +107,18 @@
       const minutes = now.getMinutes()
       console.log(minutes)
       const minutesDegrees = ((minutes+seconds/60.0)/60.0)*360.0
+      //const minutesDegrees = ((minutes)/60.0)*360.0
       const hours = now.getHours()
       console.log(hours)
       const hoursDegrees = ((hours % 12)/12+((minutes+seconds/60.0)/60))*360.0
       console.log(secondsDegrees)
       console.log(minutesDegrees)
       console.log(hoursDegrees)
+      secondHand.style.transform = `rotate(${secondsDegrees}deg)`
+      minuteHand.style.transform = `rotate(${minutesDegrees}deg)`
+      hourHand.style.transform = `rotate(${hoursDegrees}deg)`
     }
 
-    const secondHand = document.querySelector('.second-hand')
-    console.log(secondHand)
 
     function setDate(){
       const now = new Date();
@@ -122,7 +128,7 @@
       secondHand.style.transform = `rotate(${secondsDegrees}deg)`
     }
 
-    setInterval(setDate, 1000) // (LOOP) run handler, setDate, on 1000ms 'timeout' interval
+    setInterval(setDateLessTrash, 1000) // (LOOP) run handler, setDate, on 1000ms 'timeout' interval
 
   </script>
 </body>
