@@ -76,9 +76,23 @@
 
   <script>
     
+    const hands = document.querySelectorAll('.hand')
+    var sec_deg = 0;
+    var min_deg = 0;
+    var hour_deg = 0;
+
     function setDate(){
       const currentUnixTime = Date.now()
       console.log(currentUnixTime)
+      console.log(hands)
+      sec_deg += 6;
+      min_deg += 0.1;
+      hour_deg += (0.1/60);
+      console.log(sec_deg)
+      console.log(min_deg)
+      console.log(hour_deg)
+      //const stuff = hands[hand="sec-hand"].style.transform.rotate(`${sec_deg}deg`)
+      console.log(stuff)
     }
 
     setInterval(setDate, 1000) // (LOOP) run handler, setDate, on 1000ms 'timeout' interval
