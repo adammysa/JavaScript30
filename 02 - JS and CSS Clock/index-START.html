@@ -103,7 +103,7 @@
       const now = new Date();
       const seconds = now.getSeconds()
       console.log(seconds)
-      const secondsDegrees = (seconds/60.0)*360.0
+      const secondsDegrees = ((seconds/60.0)*360.0) + 90
       const minutes = now.getMinutes()
       console.log(minutes)
       const minutesDegrees = ((minutes+seconds/60.0)/60.0)*360.0
@@ -123,12 +123,20 @@
     function setDate(){
       const now = new Date();
       const seconds = now.getSeconds()
+      const minutes = now.getMinutes()
+      const hours = now.getHours()
       console.log(seconds)
-      const secondsDegrees = ((seconds/60.0)*360.0)
+      console.log(minutes)
+      console.log(hours)
+      const secondsDegrees = ((seconds/60.0)*360.0) + 90
+      const minutesDegrees = ((minutes/60.0)*360.0) + 90
+      const hoursDegrees = (((hours%12)/12)*360.0) + 90
       secondHand.style.transform = `rotate(${secondsDegrees}deg)`
+      minuteHand.style.transform = `rotate(${minutesDegrees}deg)`
+      hourHand.style.transform = `rotate(${hoursDegrees}deg)`
     }
 
-    setInterval(setDateLessTrash, 1000) // (LOOP) run handler, setDate, on 1000ms 'timeout' interval
+    setInterval(setDate, 1000) // (LOOP) run handler, setDate, on 1000ms 'timeout' interval
 
   </script>
 </body>
