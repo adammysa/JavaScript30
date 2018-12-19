@@ -68,20 +68,20 @@
       transform-origin: 100%; /*default 50%; 100% puts pivot origin in middle*/
       transform: rotate(90deg); /*hands start pointint at top*/
       transition: all 0.05s;
-      transition-timing-function: cubic-bezier(0, 3.24, 0.69, 0.22);
+      transition-timing-function: cubic-bezier(0.1, 2.5, 0.6, 0.9);
     }
 
   </style>
 
+
   <script>
-    const currentUnixTime = Date.now()
-    //const seconds = currentUnixTime.getSeconds()
-    //const minutes = currentUnitTime.getMinutes()
-    //const hours = currentUnixTime.getHours()
-    console.log(currentUnixTime)
-    //console.log(seconds)
-    //console.log(minutes)
-    //console.log(hours)
+    
+    function setDate(){
+      const currentUnixTime = Date.now()
+      console.log(currentUnixTime)
+    }
+
+    setInterval(setDate, 1000) // (LOOP) run handler, setDate, on 1000ms 'timeout' interval
 
   </script>
 </body>
