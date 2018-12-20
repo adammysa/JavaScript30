@@ -70,12 +70,15 @@
       //querySelectorAll returns a node List, which is similar to
         // but different from an array
         // Note the __proto__, which contains the methods which can be
-        // applied to the node list - they appear in vsco0de when you
+        // applied to the node list - they appear in vscode when you
         // start typing, e.g. inputs. ...
+        // some people convert these into arrays, which have more methods
+        // e.g.: var x = [2,3,4]; --> x ...
     const inputs = document.querySelectorAll('.controls input')
 
       //me trying out stuff with inputs
     console.log(inputs)
+
     inputs.forEach(input => {
       console.log(input) //singles out the 3 ids
       console.log(input.id)
@@ -89,9 +92,17 @@
         input.value = "#111111"
         console.log("new base: "+ input.value)
       }
+    })
 
       //actual stuff with inputs
-    
+      //this and inputs.forEach below go together to react to changes
+    function handleUpdate(){
+      console.log("update " + this.id + ": " + this.value)
+    }
+
+    inputs.forEach(input => {
+        //listen for a change event on each of the inputs
+      input.addEventListener('change', handleUpdate)
 
     })
   </script>
