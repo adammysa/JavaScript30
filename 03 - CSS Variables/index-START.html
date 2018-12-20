@@ -26,14 +26,19 @@
           /*css variables, default values*/
       --outerspacing: 3px;
       --spacing: 13px;  /*see input id & name "spacing" above in div class controls*/
-      --blur: 10px;     /*see input id & name "blur" above in div class controls*/
-      --base: green; /*see input id & name "base" above in div class controls*/
+      --blur: 20px;     /*see input id & name "blur" above in div class controls*/
+      --base: blue; /*see input id & name "base" above in div class controls*/
     }
     
     img { /*use the variables to change aspects of the image*/
       padding: var(--spacing); /*pass the variable spacing to padding (size around the image)*/
       background: var(--base); /*pass the variable base to background (colour behind the image)*/
       margin: var(--outerspacing);
+      filter: blur(var(--blur));
+    }
+
+    .hl {
+      color: var(--base)
     }
 
 
