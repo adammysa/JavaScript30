@@ -5,10 +5,10 @@
   <title>Scoped CSS Variables and JS</title>
 </head>
 <body>
-  <h2>Update CSS Variables with <span class='hl'>JS</span></h2>
+  <h2>Update CSS Variables with <span class='hl'>JS<span class='hl'></h2>
 
   <div class="controls">
-    <label for="spacing">Spacing:</label>
+    <label for="spacing"><span class='hl'>Spacing:</span></label>
     <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
 
     <label for="blur">Blur:</label>
@@ -27,7 +27,7 @@
       --outerspacing: 3px;
       --spacing: 13px;  /*see input id & name "spacing" above in div class controls*/
       --blur: 20px;     /*see input id & name "blur" above in div class controls*/
-      --base: blue; /*see input id & name "base" above in div class controls*/
+      --base: orange; /*see input id & name "base" above in div class controls*/
     }
     
     img { /*use the variables to change aspects of the image*/
