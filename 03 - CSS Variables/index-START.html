@@ -101,8 +101,9 @@
     }
 
     inputs.forEach(input => {
-        //listen for a change event on each of the inputs
+        //listen for a change & mousemove event on each of the inputs
       input.addEventListener('change', handleUpdate)
+      input.addEventListener('mousemove', handleUpdate)
 
     })
   </script>
