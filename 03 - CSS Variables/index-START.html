@@ -65,14 +65,24 @@
   </style>
 
   <script>
-    const inputs = document.querySelectorAll('.controls')
+      //select all of the imputs on the page (6 lines class="controls")
+      //NB - input filters out the label results
+    const inputs = document.querySelectorAll('.controls input')
     console.log(inputs)
     inputs.forEach(input => {
-      console.log(input)
-      console.log(input.style.color)
+      console.log(input) //singles out the 3 ids
+      console.log(input.id)
+      if ((input.id) != "base"){
+        console.log("non-base: "+ input.value)
+        input.value = input.max
+        console.log("new non-base: "+ input.value)
+      }
+      else{
+        console.log("base: "+ input.value)
+        input.value = "#bbaacc"
+        console.log("new base: "+ input.value)
+      }
     })
-    
-    //inputs.style.color = 'green')
   </script>
 
 </body>
