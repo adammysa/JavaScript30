@@ -67,6 +67,11 @@
   <script>
       //select all of the imputs on the page (6 lines class="controls")
       //NB - input filters out the label results
+      //querySelectorAll returns a node List, which is similar to
+        // but different from an array
+        // Note the __proto__, which contains the methods which can be
+        // applied to the node list - they appear in vsco0de when you
+        // start typing, e.g. inputs. ...
     const inputs = document.querySelectorAll('.controls input')
 
       //me trying out stuff with inputs
