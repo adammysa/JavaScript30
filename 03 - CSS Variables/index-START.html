@@ -68,13 +68,15 @@
       //select all of the imputs on the page (6 lines class="controls")
       //NB - input filters out the label results
     const inputs = document.querySelectorAll('.controls input')
+
+      //me trying out stuff with inputs
     console.log(inputs)
     inputs.forEach(input => {
       console.log(input) //singles out the 3 ids
       console.log(input.id)
       if ((input.id) != "base"){
         console.log("non-base: "+ input.value)
-        input.value = input.max
+        input.value = 25 //input.min //input.max
         console.log("new non-base: "+ input.value)
       }
       else{
@@ -82,6 +84,10 @@
         input.value = "#111111"
         console.log("new base: "+ input.value)
       }
+
+      //actual stuff with inputs
+    
+
     })
   </script>
 
