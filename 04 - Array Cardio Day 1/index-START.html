@@ -43,24 +43,58 @@
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors' first and last names
-    const firstLastList = inventors.map(inventor => [inventor.first, inventor.last]);
+      // NB - returns an array of the same length but modified in some way
+    const firstLastList = inventors.map(inventor => inventor.first + ' ' + inventor.last);
     console.log('array of the inventors first and last names: ')
     //console.log(firstLastList)
-    console.table(firstLastList)
+    console.log(firstLastList)
     
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+      // takes two elements and sorts them (a or b larger, reordered)
     const old2young = inventors.sort(function(a,b){
-      return a.year - b.year
-    })
+      
+      // if (a.year > b.year){
+      //   return 1;
+      // }
+      // else{
+      //   return -1;
+      // }
+
+      return a.year - b.year //the above is a better explanation, also the statement below
+    }) 
+    
+      // same as above - if a.y > b.y then ret 1, else ret -1
+    const old2young2 = inventors.sort((a,b) => a.year > b.year ? 1 : -1)
+
     console.log('list of inventors sorted oldest to youngest: ')
     //console.log(old2young)
-    console.table(old2young)
+    console.table(old2young2)
+    
+    
+    
+      //allows for building something on each element of an array
+      // like a for loop over the array, referencing and changing each element in turn
+
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live?
     const ages = inventors.map(inventor => inventor.passed-inventor.year)
     const reducer = (accumulator, currentValue) => accumulator + currentValue
     const totalyears = (inventors.map(inventor => inventor.passed-inventor.year)).reduce(reducer)
+
+    const totalyears2 = inventors.reduce((total, inventor) => {
+      return (total + (inventor.passed - inventor.year)) //iterates over the whole array
+    }, 0) //the 0 is the inital value of total
+    console.log('totalyears2: '+ totalyears2)
+    
+    // similar to above, interatively instead of functionally
+    var totalYears = 0;
+    for (var i = 0; i < inventors.length; i++) {
+      totalYears += (inventors[i].passed - inventors[i].year)
+    }
+
+    console.log('after using for loop -- numYears: ' + totalYears)
+    
     console.log('How many years did all the inventors live?: ')
     console.table(ages)
     console.log('totalyears: ' + totalyears)
