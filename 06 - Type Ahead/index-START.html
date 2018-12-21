@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Type Ahead 👀</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css"> <!-- instead of having a separate style section -->
 </head>
 <body>
 
@@ -14,19 +14,62 @@
       <li>or a state</li>
     </ul>
   </form>
+
 <script>
 const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
 
 const cities = [];
+let roast = [];
 //using fetch, built into browser, returns a promise
 //JSON.parse(blob) doesn't work
 //returns another promise
 //
 const prom = fetch(endpoint) //returns a promise, then on this returns another promise
-console.log(prom)
+console.log(prom) //data blob below: unknown type - readable stream, tee, ... (json.parse doesn't work)
 prom2 = prom.then( blob2 => blob2.json()) //returns another promise, then on this yeils stuff
-console.log(prom2)
-fetch(endpoint).then(blob => blob.json()).then(data => console.log(data))
+console.log(prom2) //there is a json mdethod for blob
+fetch(endpoint).then(blob => blob.json()).then(data => cities.push(...data)) //ES6 spread into cities, instead of simple push, which leads to arrays-in-arrays
+console.log(cities) //takes a few seconds to load
+
+
+  //tried this type of thing (below) 
+/*
+const target = document.querySelector('search')
+function targetEntered(){
+  console.log('targetEntered')
+}
+target => target.addEventlistener('value', targetEntered)
+*/
+
+function findMatches(wordToMatch, cities){
+  return cities.filter(place => {
+    //figure out if city or state matches search string
+    //regex below uses flags - global & case insensitivity
+    const regex = new RegExp(wordToMatch, 'gi')
+    const matches = place.city.match(regex) || place.state.match(regex) 
+    //use regex below
+    console.log(matches)
+    return matches
+  })
+}
+
+function displayMatches(){
+  console.log(this.value)
+}
+
+const searchInput = document.querySelector('.search')
+const suggestions = document.querySelector('.suggestions') //ul
+
+  //tested this by typing something inside search then clicking outside (bceause changeevent only fires when you click somewher else)
+  //get error initially, change line below to displayMatches
+searchInput.addEventListener('change', displayMatches)
+  //in order to fire on keyup as well:
+searchInput.addEventListener('keyup', displayMatches)
+
+
+
+// example usage of findMatches:
+  // findMatches('Las', cities)
 
 </script>
 </body>
