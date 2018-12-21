@@ -218,19 +218,26 @@
     // Sum up the instances of each of these
     const dataOrig = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
     var data = dataOrig.reduce(function(itemCount, currentItem){
-        if(typeof itemCount[currentItem] !== "undefined"){
-          itemCount[currentItem]++; 
-          return itemCount;
-        } else {
-          itemCount[currentItem]=1; 
-          return itemCount;
+        // if(typeof itemCount[currentItem] !== "undefined"){
+        //   itemCount[currentItem]++; 
+        //   return itemCount;
+        // } else {
+        //   itemCount[currentItem]=1; 
+        //   return itemCount;
+        // }
+        if (!itemCount[currentItem]){
+          itemCount[currentItem] = 0
         }
-    }, {});
-    var numItems = [];
-    for(var x in data){
-      numItems.push(x + ": " + data[x]);
-    }
-    console.log(numItems);
+        itemCount[currentItem]++
+        return itemCount
+    }, {}); //start with blank object
+    console.log(data)
+
+    // var numItems = [];
+    // for(var x in data){
+    //   numItems.push(x + ": " + data[x]);
+    // }
+    // console.log(numItems);
 
   </script>
 </body>
