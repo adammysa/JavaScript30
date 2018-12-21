@@ -84,7 +84,8 @@
     .panel p:nth-child(2) {
       font-size: 4em;
     }
-      /*the open works on transition with the cubic bezier, etc."
+      /*the open works on transition with the cubic bezier, etc."*/
+      /*the console.log(e.propertyName); in toggleActive yeilds font-size & flex-grow  */
     .panel.open { /*acts on, e.g. div class = "panel panel1 open"*/
       font-size: 40px;
       flex: 5; /*takes 5 fiems the amount of extra room as the rest of them with flex 1*/
@@ -122,6 +123,32 @@
   </div>
 
   <script>
+      // yeilds nodelist of all different panels
+    const panels = document.querySelectorAll('.panel')
+
+      //function that toggles the class on open
+    function toggleOpen(){
+      console.log('toggledOpen')
+      this.classList.toggle('open')
+    }
+
+    function toggleActive(e){
+      console.log(e.propertyName);
+      if (e.propertyName.includes('flex')){ //only works on the propertyName flex*(-grow), not font-size
+        this.classList.toggle('open-active') //mirrors the open above
+      }
+    }
+
+      //listens for a click on each of the panels
+      //toggleOpen doesn't have () because we don't want it tio run on pageload
+    panels.forEach(panel => panel.addEventListener('click', toggleOpen))
+      //below is transitionEND not transitioned
+    panels.forEach(panel => panel.addEventListener('transitionend', toggleActive))
+
+    //order of things:
+      //1 - listen for a click on each panel
+      //2 - when someone clicks, hope it, triggers css open
+      //3 - when that finishes, second one, transition end will trigger
 
   </script>
 
