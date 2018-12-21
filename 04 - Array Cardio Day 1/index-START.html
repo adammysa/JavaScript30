@@ -99,6 +99,7 @@
     console.table(ages)
     console.log('totalyears: ' + totalyears)
 
+
     // 5. Sort the inventors by years lived
     console.log('Sort the inventors by years lived: ')
     // const inventorsPlusAges = inventors
@@ -116,7 +117,16 @@
     const byYearsLived = inventors.sort(function(a,b){
       return ((a.year-a.passed) - (b.year-b.passed))
     })
-    console.table(byYearsLived.reverse())
+    console.log('yearslived1: ')
+    console.table(byYearsLived)
+
+    const byYearsLived2 = inventors.sort((a,b)=>{
+      const older = a.passed-a.year
+      const younger = b.passed-b.year
+      return older > younger ? -1 : 1
+    })
+    console.log('yearslived2: ')
+    console.table(byYearsLived2)
 
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
@@ -126,7 +136,11 @@
     //console.table(a)
     //a = fetch('https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris')
 
-    const boulevards = ['Boulevard Auguste-Blanqui',
+    // get the array using JS
+    // run the following in the console while on the webpage
+    // 
+
+    const boulevards2 = ['Boulevard Auguste-Blanqui',
     'Boulevard Barbès',
     'Boulevard Beaumarchais',
     'Boulevard de l\'Amiral-Bruix',
@@ -152,15 +166,39 @@
     'Boulevard Voltaire',
     'Boulevard de la Zone']
 
-var i = 0;
-var newList = []
-boulevards.forEach(boulevard => {
-  if (boulevard.includes('de')){
-    i++
-    newList.push(boulevard) 
-  }
-})
-console.table(newList)
+    const boulevards = ["Boulevards of Paris", "City walls of Paris", "Thiers wall", "Wall of Charles V", "Wall of Philip II Augustus", "City gates of Paris", "Haussmann's renovation of Paris", "Boulevards of the Marshals", "Boulevard Auguste-Blanqui", "Boulevard Barbès", "Boulevard Beaumarchais", "Boulevard de l'Amiral-Bruix", "Boulevard des Capucines", "Boulevard de la Chapelle", "Boulevard de Clichy", "Boulevard du Crime", "Boulevard Haussmann", "Boulevard de l'Hôpital", "Boulevard des Italiens", "Boulevard de la Madeleine", "Boulevard de Magenta", "Boulevard Montmartre", "Boulevard du Montparnasse", "Boulevard Raspail", "Boulevard Richard-Lenoir", "Boulevard de Rochechouart", "Boulevard Saint-Germain", "Boulevard Saint-Michel", "Boulevard de Sébastopol", "Boulevard de Strasbourg", "Boulevard du Temple", "Boulevard Voltaire", "Boulevard de la Zone"]
+    //to get the const boulevards above, did the follwing in the web console whilst on the website:
+    // > const category = document.querySelector('.mw-category')
+    //undefined
+    // > links2 = Array.from(category.querySelectorAll('a'))
+    //(33) [a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a]
+    // (drilling down in one of the "a"s) ...
+    //    target: ""
+    //    text: "Boulevard Saint-Germain"
+    //    textContent: "Boulevard Saint-Germain"
+    //    title: "Boulevard Saint-Germain"
+    //    translate: true ...
+    //de = links2.map(link => link.textContent)
+    //(33) ["Boulevards of Paris", "City walls of Paris", "Thiers wall", "Wall of Charles V", "Wall of Philip II Augustus", "City gates of Paris", "Haussmann's renovation of Paris", "Boulevards of the Marshals", "Boulevard Auguste-Blanqui", "Boulevard Barbès", "Boulevard Beaumarchais", "Boulevard de l'Amiral-Bruix", "Boulevard des Capucines", "Boulevard de la Chapelle", "Boulevard de Clichy", "Boulevard du Crime", "Boulevard Haussmann", "Boulevard de l'Hôpital", "Boulevard des Italiens", "Boulevard de la Madeleine", "Boulevard de Magenta", "Boulevard Montmartre", "Boulevard du Montparnasse", "Boulevard Raspail", "Boulevard Richard-Lenoir", "Boulevard de Rochechouart", "Boulevard Saint-Germain", "Boulevard Saint-Michel", "Boulevard de Sébastopol", "Boulevard de Strasbourg", "Boulevard du Temple", "Boulevard Voltaire", "Boulevard de la Zone"]
+
+    var i = 0;
+    var newList = []
+    boulevards2.forEach(boulevard => {
+      if (boulevard.includes('de')){
+        i++
+        newList.push(boulevard) 
+      }
+    })
+    console.table(newList)
+
+        //doesn't work for some reason
+    // const withDe = boulevards.filter(boulevard => {
+    //   boulevard.includes('de')
+    // })
+    // console.log('boulevard, filter method: ')
+    // console.table(withDe)
+
+
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
