@@ -17,6 +17,16 @@
 <script>
 const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
 
+const cities = [];
+//using fetch, built into browser, returns a promise
+//JSON.parse(blob) doesn't work
+//returns another promise
+const prom = fetch(endpoint) //returns a promise, then on this returns another promise
+console.log(prom)
+prom2 = prom.then( blob2 => blob2.json()) //returns another promise, then on this yeils stuff
+console.log(prom2)
+fetch(endpoint).then(blob => blob.json()).then(data => console.log(data))
+
 </script>
 </body>
 </html>
