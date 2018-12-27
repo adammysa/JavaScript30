@@ -7,7 +7,17 @@
 <body>
 <canvas id="draw" width="800" height="800"></canvas>
 <script>
+
+const theCanvas = document.querySelector('#draw')
+//console.log(theCanvas)
+const ctx = theCanvas.getContext('2d')
+console.log(ctx)
+theCanvas.width = window.innerWidth //Makes canvas conform to size of window
+theCanvas.height = window.innerWidth
+
 </script>
+
+
 
 <style>
   html, body {
