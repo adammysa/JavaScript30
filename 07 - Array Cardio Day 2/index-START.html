@@ -51,30 +51,31 @@
         }
       })
     }
-    
-    // const findID = comments.find(comment => {
-    //   if (comment.id == 823423){
-    //     return comment.text
-    //   }
-    // })
     const findID = findIDFunc(823423)
-    console.log({findID})
+    console.log(findID)
+
+        //one liner version of the above
+    const comment = comments.find(comment => (comment.id === 823423))
+    console.log(comment)
 
     // Array.prototype.findIndex()
     // Find the comment with this ID
     // delete the comment with the ID of 823423
-    const findIDIndex = comments.findIndex(comment => {
-      if (comment.id == 823423){
-        return comment
-      }
-    })
+    const findIDIndex = comments.findIndex(comment => (comment.id === 823423))
     console.log({findIDIndex})
+    console.table(comments)
 
-    comments[findIDIndex].text = ''
-    
-    console.log(comments)
+    //var removed = comments.slice(findIDIndex)
+    //console.table(removed)
 
+    const newComments = [
+    ...comments.slice(0, findIDIndex),
+    ...comments.slice(findIDIndex+1)
+    ]
+    console.table(newComments)
 
+    comments.splice(findIDIndex, 1)
+    console.table(comments)
 
   </script>
 </body>
