@@ -24,12 +24,12 @@ let roast = [];
 //JSON.parse(blob) doesn't work
 //returns another promise
 //
-const prom = fetch(endpoint) //returns a promise, then on this returns another promise
-console.log(prom) //data blob below: unknown type - readable stream, tee, ... (json.parse doesn't work)
-prom2 = prom.then( blob2 => blob2.json()) //returns another promise, then on this yeils stuff
-console.log(prom2) //there is a json mdethod for blob
+//const prom = fetch(endpoint) //returns a promise, then on this returns another promise
+//console.log(prom) //data blob below: unknown type - readable stream, tee, ... (json.parse doesn't work)
+//prom2 = prom.then( blob2 => blob2.json()) //returns another promise, then on this yeils stuff
+//console.log(prom2) //there is a json mdethod for blob
 fetch(endpoint).then(blob => blob.json()).then(data => cities.push(...data)) //ES6 spread into cities, instead of simple push, which leads to arrays-in-arrays
-console.log(cities) //takes a few seconds to load
+//console.log(cities) //takes a few seconds to load
 
 
   //tried this type of thing (below) 
@@ -48,25 +48,48 @@ function findMatches(wordToMatch, cities){
     const regex = new RegExp(wordToMatch, 'gi')
     const matches = place.city.match(regex) || place.state.match(regex) 
     //use regex below
-    console.log(matches)
+    //console.log(matches)
     return matches
   })
 }
 
-function displayMatches(){ //whenever someone changes the value of the search field
-  console.log(this.value)
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
-const searchInput = document.querySelector('.search')
-const suggestions = document.querySelector('.suggestions') //ul
+function displayMatches(){ //whenever someone changes the value of the search field
+  const matchArray = findMatches(this.value, cities)
+  //const placePop = numberWithCommas(place.population)
 
-  //tested this by typing something inside search then clicking outside (bceause changeevent only fires when you click somewher else)
+  //console.log(matchArray)
+  const html = matchArray.map(place => {
+    const regex = new RegExp(this.value, 'gi')
+    const placeCity = place.city.replace(regex, `<span class="hl">${this.value}</span>`)
+    const placeState = place.state.replace(regex, `<span class="hl">${this.value}</span>`)
+    return `
+    <li>
+        <span class = "name">${placeCity}, ${placeState}</span>
+        <span class = "population">${numberWithCommas(place.population)}</span>
+    </li>
+    `
+  }).join('')
+  //console.log(html)
+  suggestions.innerHTML = html
+}
+
+
+const searchInput = document.querySelector('.search') //varname based on class & input type
+const suggestions = document.querySelector('.suggestions') //ul, similar for suggestions
+
+  //tested this by typing something inside search then clicking outside (because change event only fires when you click somewhere else)
   //get error initially, change line below to displayMatches
-searchInput.addEventListener('change', displayMatches)
+searchInput.addEventListener('change', displayMatches) //listen for the change event
   //in order to fire on keyup as well:
-searchInput.addEventListener('keyup', displayMatches)
+searchInput.addEventListener('keyup', displayMatches) //also fires on keyup
 
-
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
 
 // example usage of findMatches:
   // findMatches('Las', cities)
