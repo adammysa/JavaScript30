@@ -10,10 +10,16 @@
 
 const theCanvas = document.querySelector('#draw')
 //console.log(theCanvas)
+
 const ctx = theCanvas.getContext('2d')
 console.log(ctx)
+
 theCanvas.width = window.innerWidth //Makes canvas conform to size of window
 theCanvas.height = window.innerWidth
+
+ctx.strokeStyle = '#BADA55' //the rest of the canvas ctx options cab be found on MDN
+ctx.lineJoin = 'round'
+ctx.lineCap = 'round'
 
 </script>
 
