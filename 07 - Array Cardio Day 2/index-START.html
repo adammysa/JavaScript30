@@ -44,12 +44,37 @@
     // Array.prototype.find()
     // Find is like filter, but instead returns just the one you are looking for
     // find the comment with the ID of 823423
-
+    function findIDFunc(id){
+      return comments.find(comment => {
+        if (comment.id == id){
+          return comment.text
+        }
+      })
+    }
     
+    // const findID = comments.find(comment => {
+    //   if (comment.id == 823423){
+    //     return comment.text
+    //   }
+    // })
+    const findID = findIDFunc(823423)
+    console.log({findID})
 
     // Array.prototype.findIndex()
     // Find the comment with this ID
     // delete the comment with the ID of 823423
+    const findIDIndex = comments.findIndex(comment => {
+      if (comment.id == 823423){
+        return comment
+      }
+    })
+    console.log({findIDIndex})
+
+    comments[findIDIndex].text = ''
+    
+    console.log(comments)
+
+
 
   </script>
 </body>
