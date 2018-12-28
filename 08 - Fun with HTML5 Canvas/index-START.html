@@ -20,18 +20,25 @@ theCanvas.height = window.innerWidth
   //ctx is where all the canvas drawing happens
 ctx.strokeStyle = '#BADA55' //the rest of the canvas ctx options cab be found on MDN
 ctx.lineJoin = 'round'
-ctx.lineCap = 'round'
+ctx.lineCap = 'round' //without this, get slinky-lines
+ctx.lineWidth = 10 //was thin without this, now with 100 is thick
 
 let isDrawing = false //flag for drawing (click & drag) vs. just moving mouse around
   //need starting x & y (start & stop)
 let lastX = 0
 let lastY = 0
+let hue = 0
+let lightness = 50
+let saturation = 100
+let alpha = 1
+let i = 0
+
 
   //called whenever mouse is moved over the canvas (can see coords in console log)
   //takes in an event
 function draw(e){
   if (!isDrawing) {
-    lastX = e.offsetX
+    lastX = e.offsetX //could also put these inside the mousedown function
     lastY = e.offsetY
     return
   } //stops function when unclick mouse
@@ -41,8 +48,17 @@ function draw(e){
   ctx.moveTo(lastX, lastY)
     //go to
   ctx.lineTo(e.offsetX, e.offsetY)
+  hue = i%360
+  ctx.lineWidth = i%100
+
+  ctx.strokeStyle = 'hsl(' + hue + ', 100%, 50%)'
   ctx.stroke() //this actually executes the last three lines
 
+  i++
+  if (i > 36000) i = 0
+  
+
+  console.log(i)
     //did these on my own otherwise get big ray-fan shape
   lastX = e.offsetX
   lastY = e.offsetY
