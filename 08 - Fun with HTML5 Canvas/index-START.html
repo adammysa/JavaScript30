@@ -30,26 +30,29 @@ let lastY = 0
   //takes in an event
 function draw(e){
   if (!isDrawing) return; //stops function when unclick mouse
-  //console.log(e) //nb - e.g. console log as placeholder for further functionality
+  console.log(e) //nb - e.g. console log as placeholder for further functionality
 }
 
-  //wrote the (un)Click 
-function click(e){
-  isDrawing = true;
-  console.log(e)
-}
-function unClick(e){
-  isDrawing = false;
-  console.log(e)
-}
+  //wrote the (un)/Click functions on my own, not sure if correct
+  //these were good, except they can be added to eventlisteners below as => 
+// function click(e){
+//   isDrawing = true;
+//   console.log(e)
+// }
+// function unClick(e){
+//   isDrawing = false;
+//   console.log(e)
+// }
 
 
-  //therefore, when move mouse (event) on the canvas, invokes function draw
+  //listener: when move mouse (event) on the canvas, invokes function draw
 theCanvas.addEventListener('mousemove', draw)
 
-  //wrote these myself, not sure if correct
-theCanvas.addEventListener('mousedown', click)
-theCanvas.addEventListener('mouseup', unClick)
+  //wrote the last two listeners myself, not sure if correct
+  //mostly, added the arrow functions as well as mouseout
+theCanvas.addEventListener('mousedown', () => isDrawing = true)
+theCanvas.addEventListener('mouseup', () => isDrawing = false)
+theCanvas.addEventListener('mouseout', () => isDrawing = false)
 
 </script>
 
