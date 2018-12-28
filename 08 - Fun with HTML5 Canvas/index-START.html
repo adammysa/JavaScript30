@@ -29,11 +29,27 @@ let lastY = 0
   //called whenever mouse is moved over the canvas (can see coords in console log)
   //takes in an event
 function draw(e){
-  console.log(e) //nb - e.g. console log as placeholder for further functionality
+  if (!isDrawing) return; //stops function when unclick mouse
+  //console.log(e) //nb - e.g. console log as placeholder for further functionality
 }
 
+  //wrote the (un)Click 
+function click(e){
+  isDrawing = true;
+  console.log(e)
+}
+function unClick(e){
+  isDrawing = false;
+  console.log(e)
+}
+
+
   //therefore, when move mouse (event) on the canvas, invokes function draw
-theCanvas.addEventListener('mousemove', draw) 
+theCanvas.addEventListener('mousemove', draw)
+
+  //wrote these myself, not sure if correct
+theCanvas.addEventListener('mousedown', click)
+theCanvas.addEventListener('mouseup', unClick)
 
 </script>
 
