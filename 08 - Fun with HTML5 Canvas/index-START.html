@@ -30,16 +30,24 @@ let lastY = 0
   //called whenever mouse is moved over the canvas (can see coords in console log)
   //takes in an event
 function draw(e){
-  if (!isDrawing) return; //stops function when unclick mouse
+  if (!isDrawing) {
+    lastX = e.offsetX
+    lastY = e.offsetY
+    return
+  } //stops function when unclick mouse
   console.log(e) //nb - e.g. console log as placeholder for further functionality
   ctx.beginPath()
+    //start from
   ctx.moveTo(lastX, lastY)
+    //go to
   ctx.lineTo(e.offsetX, e.offsetY)
   ctx.stroke() //this actually executes the last three lines
 
     //did these on my own otherwise get big ray-fan shape
   lastX = e.offsetX
   lastY = e.offsetY
+    //below same as two lines above
+  //[lastX, lastY] = [e.offsetX, e.offsetY] //destructuring an array (doesn't work for some reason)
 }
 
   //wrote the (un)/Click functions on my own, not sure if correct
