@@ -22,6 +22,18 @@ ctx.lineJoin = 'round'
 ctx.lineCap = 'round'
 
 let isDrawing = false //flag for drawing (click & drag) vs. just moving mouse around
+  //need starting x & y (start & stop)
+let lastX = 0
+let lastY = 0
+
+  //called whenever mouse is moved over the canvas (can see coords in console log)
+  //takes in an event
+function draw(e){
+  console.log(e) //nb - e.g. console log as placeholder for further functionality
+}
+
+  //therefore, when move mouse (event) on the canvas, invokes function draw
+theCanvas.addEventListener('mousemove', draw) 
 
 </script>
 
