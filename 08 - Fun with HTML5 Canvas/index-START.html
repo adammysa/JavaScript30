@@ -17,6 +17,7 @@ console.log(ctx)
 theCanvas.width = window.innerWidth //Makes canvas conform to size of window
 theCanvas.height = window.innerWidth
 
+  //ctx is where all the canvas drawing happens
 ctx.strokeStyle = '#BADA55' //the rest of the canvas ctx options cab be found on MDN
 ctx.lineJoin = 'round'
 ctx.lineCap = 'round'
@@ -31,6 +32,14 @@ let lastY = 0
 function draw(e){
   if (!isDrawing) return; //stops function when unclick mouse
   console.log(e) //nb - e.g. console log as placeholder for further functionality
+  ctx.beginPath()
+  ctx.moveTo(lastX, lastY)
+  ctx.lineTo(e.offsetX, e.offsetY)
+  ctx.stroke() //this actually executes the last three lines
+
+    //did these on my own otherwise get big ray-fan shape
+  lastX = e.offsetX
+  lastY = e.offsetY
 }
 
   //wrote the (un)/Click functions on my own, not sure if correct
