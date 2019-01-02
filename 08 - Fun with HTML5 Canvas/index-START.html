@@ -56,6 +56,16 @@ function draw(e){
 
   i++ //increment index over time
   if (i > 36000) i = 0 //prevent overflow of i
+
+  //another way to change the colour & line thickeness:
+  // if (ctx.lineWidth >= 100 || ctx.lineWidth <= 1) {
+  //   direction = !direction;
+  // }
+  // if(direction) {
+  //   ctx.lineWidth++;
+  // } else {
+  //   ctx.lineWidth--;
+  // }
   
   console.log(i)
     //did these on my own otherwise get big ray-fan shape
